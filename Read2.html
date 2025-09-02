@@ -1,237 +1,434 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AquaPaisaje · Misión · Visión · Servicios</title>
-  <!-- Seguridad: CSP + headers en meta para sitio estático -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-aqua123'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src https://fonts.gstatic.com; connect-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <meta name="referrer" content="same-origin">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-  <!-- Tipografías endurecidas -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <title>AquaPaisaje · Agua, vida y forma</title>
+  <meta name="description" content="Riego inteligente y limpieza profesional en Iglesia (San Juan). Consultá tu presupuesto sin cargo." />
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- Seguridad básica desde HTML (mejor reforzar con headers del servidor) -->
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  img-src 'self' https: data: blob:;
+  font-src https://fonts.gstatic.com 'self';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  script-src 'self' 'unsafe-inline';
+  base-uri 'none';
+  form-action 'self';
+  frame-ancestors 'none';
+  upgrade-insecure-requests;">
+  <meta http-equiv="Referrer-Policy" content="no-referrer" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="https://i.ibb.co/xK4wDWLk/c5ac876c0cd3.jpg" href="" sizes="32x32" type="image/png">
+
+
   <style>
-    /* ================== VARIABLES Y BASE ================== */
-    :root{--azul:#0ea5e9;--verde:#10b981;--verde-osc:#0f766e;--txt:#0f172a;--txt-soft:#334155;--card:#f8fafc;--borde:#e2e8f0;--shadow:0 10px 30px rgba(2,6,23,.12);--radius:18px}
+    :root{
+      --primary:#10b981; /* Verde */
+      --secondary:#0ea5e9; /* Azul */
+      --text:#0f172a;
+      --muted:#475569;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(2,8,23,.10);
+      --ring: 0 0 0 3px rgba(16,185,129,.25);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--txt);line-height:1.6;
-      /* Fondo selva difuminado + overlays para contraste */
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(0,0,0,.35), transparent 60%),
-        radial-gradient(1000px 500px at 110% 10%, rgba(0,0,0,.22), transparent 60%),
-        linear-gradient(135deg, rgba(14,165,233,.9), rgba(16,185,129,.9)),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="%2306b6d4"/><stop offset="100%" stop-color="%2310b981"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23g)"/><g fill="%230a6847" opacity="0.18"><path d="M80 700c40-120 140-220 260-260 150-50 300-10 420 80 70 55 140 120 200 200H0z"/><path d="M0 760c70-90 180-170 300-200 160-40 320 10 460 120 60 48 120 100 160 160H0z"/></g></svg>') center/cover fixed no-repeat}
-    img{max-width:100%;height:auto}
-    a{text-decoration:none}
-    main{max-width:1200px;margin:auto;padding:32px 20px}
-    section{margin-bottom:48px}
-    h2{font-size:clamp(24px,3vw,34px);margin:0 0 12px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.35)}
-    .section-title{margin-bottom:16px}
-    .grid{display:grid;gap:22px}
-    @media(min-width:820px){.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--card);border:1px solid var(--borde);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}/* ================== HERO ================== */
-header{position:relative;overflow:hidden;color:#fff}
-.hero-inner{max-width:1100px;margin:auto;padding:64px 20px;text-align:center}
-.hero-eyebrow{font:800 .8rem/1 Poppins, sans-serif;letter-spacing:.22em;text-transform:uppercase;opacity:.92}
-h1{font:800 clamp(36px,6.5vw,72px)/1.05 Poppins;margin:.3rem 0;text-shadow:0 4px 22px rgba(0,0,0,.6)}
-.hero-sub{display:inline-block;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.22);padding:10px 16px;border-radius:14px}
-.cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px}
-.btn{background:#fff;color:var(--verde-osc);padding:12px 20px;border-radius:30px;font-weight:700;transition:.25s}
-.btn:hover{transform:translateY(-2px);background:var(--verde);color:#fff}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Poppins',system-ui}
+    html{scroll-behavior:smooth}
+    h1,h2,h3{font-family:'Montserrat',Poppins,system-ui;letter-spacing:.2px;margin:0 0 .6rem}
+    p{margin:.4rem 0 1rem}
+    a{color:inherit}
 
-/* ================== LISTAS ================== */
-ul.checks{list-style:none;padding:0;margin:0}
-ul.checks li{margin:.35rem 0;color:var(--txt-soft)}
-ul.checks li::before{content:"✔";color:var(--verde);margin-right:8px}
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid rgba(2,6,23,.06)}
+    .nav .wrap{max-width:1150px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .logo-img{width:44px;height:auto;object-fit:contain}
+    .name{font-weight:800;letter-spacing:.5px}
+    .links{display:flex;gap:1rem;align-items:center}
+    .links a{text-decoration:none;font-weight:600}
+    .btn{padding:.6rem 1rem;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;text-decoration:none;font-weight:800;box-shadow:var(--shadow)}
 
-/* ================== SERVICIOS ================== */
-.servicios .card{transition:.28s}
-.servicios .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(2,6,23,.16)}
-.badge{display:inline-block;background:#d1fae5;color:#065f46;border:1px solid #a7f3d0;border-radius:999px;padding:6px 10px;font-weight:700;font-size:.78rem;margin-bottom:8px}
-.destacado{border:3px solid var(--verde)}
+    /* HERO */
+    .hero{position:relative;overflow:hidden;background:
+      radial-gradient(120% 120% at 0% 0%, rgba(16,185,129,.18), transparent 40%),
+      radial-gradient(120% 120% at 100% 0%, rgba(14,165,233,.18), transparent 40%),
+      linear-gradient(180deg,#fff 0%, #f1f5f9 100%)}
+    .hero::before{content:'';position:absolute;inset:-20% -10% auto;height:70vh;
+      background:radial-gradient(120% 120% at 0% 0%, var(--primary), transparent 65%),
+                 radial-gradient(120% 120% at 100% 0%, var(--secondary), transparent 60%);
+      opacity:.12;filter:blur(40px)}
+    .wrap{max-width:1150px;margin:0 auto}
+    .hero .wrap{padding:clamp(2rem,4vw,3rem) 1rem 2.5rem;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+    .badge{display:inline-flex;gap:.5rem;align-items:center;background:#fff;border:1px solid rgba(2,6,23,.06);padding:.35rem .6rem;border-radius:999px;box-shadow:0 6px 20px rgba(2,6,23,.04);font-size:.85rem}
+    .hero h1{font-size:clamp(2rem,6vw,3.2rem)}
+    .hero p{font-size:1.05rem;color:var(--muted)}
+    .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
+    .btn-primary{padding:.9rem 1.2rem;border-radius:14px;font-weight:800;color:#fff;border:0;cursor:pointer;background:linear-gradient(90deg,var(--primary),var(--secondary));box-shadow:var(--shadow)}
+    .btn-light{padding:.9rem 1.2rem;border-radius:14px;font-weight:700;color:var(--text);border:1px solid rgba(2,6,23,.08);background:#fff}
 
-/* ================== TABS LIMPIEZA ================== */
-.tabs{display:flex;gap:8px;margin:10px 0 12px;flex-wrap:wrap}
-.tab{flex:1 1 120px;padding:10px 12px;background:#e0f2fe;text-align:center;border-radius:10px;cursor:pointer;border:1px solid #bae6fd;font-weight:700}
-.tab.active{background:var(--verde);color:#fff;border-color:#6ee7b7}
-.tab-content{display:none}
-.tab-content.active{display:block}
+    /* GRID/CARDS */
+    section{padding:clamp(2rem,5vw,3.5rem) 1rem}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+    .card{background:var(--card);border:1px solid rgba(2,6,23,.06);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(1rem,2vw,1.4rem)}
+    .muted{color:var(--muted)}
 
-/* ================== FORM ================== */
-form{display:grid;gap:12px}
-input,textarea{padding:12px 14px;border:1px solid var(--borde);border-radius:10px;background:#fff}
-button{background:var(--verde-osc);color:#fff;padding:12px;border:none;border-radius:10px;font-weight:700;cursor:pointer}
-button:hover{background:var(--azul)}
+    /* VALORES */
+    .values{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .value{background:var(--card);border:1px solid rgba(2,6,23,.06);border-radius:16px;padding:1rem;display:flex;gap:.8rem;align-items:flex-start}
 
-/* ================== RESPONSIVE ================== */
-@media (max-width:680px){.hero-sub{display:block}.card{padding:18px}}
+    /* SERVICIOS */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .service{border-radius:16px;background:var(--card);border:1px solid rgba(2,6,23,.06);padding:1rem}
+    .service h3{margin-bottom:.4rem}
+    .service ul{margin:.5rem 0 0;padding-left:1.1rem}
 
+    /* CARRUSEL */
+    .carousel{position:relative;border-radius:18px;overflow:hidden;background:#000}
+    .carousel-track{display:flex;scroll-behavior:smooth;overflow:hidden}
+    .slide{min-width:100%;height:420px;background:#000;display:grid;place-items:center}
+    .slide img{width:100%;height:100%;object-fit:cover}
+    .c-ctrl{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:0;border-radius:999px;padding:.6rem .7rem;cursor:pointer;box-shadow:var(--shadow);font-weight:700}
+    .c-prev{left:12px}.c-next{right:12px}
+    .c-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;gap:6px;justify-content:center}
+    .c-dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.6);border:0;cursor:pointer}
+    .c-dot.active{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+
+    /* HOJAS PARALLAX (decorativas) */
+    .parallax{pointer-events:none;position:absolute;inset:0;overflow:visible}
+    .leaf{position:absolute;will-change:transform;opacity:.28;filter:drop-shadow(0 8px 16px rgba(2,6,23,.08))}
+    .leaf svg{display:block}
+    .leaf.l1{left:-40px;top:40px;transform:rotate(12deg)}
+    .leaf.l2{right:-30px;top:120px;transform:rotate(-8deg)}
+    .leaf.l3{left:10%;bottom:-30px;transform:rotate(18deg)}
+    .leaf.l4{right:12%;bottom:-40px;transform:rotate(-16deg)}
+
+    /* CONTACTO */
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:1.4rem}
+    .info-list{list-style:none;margin:0;padding:0}
+    .info-list li{margin:.4rem 0;color:var(--muted)}
+
+    /* FOOTER */
+    footer{background:#0f172a;color:#e2e8f0;padding:1.6rem 1rem}
+    footer .foot{display:flex;gap:1rem;justify-content:space-between;align-items:center;max-width:1150px;margin:0 auto}
+    .footnote{font-size:.85rem;color:#94a3b8}
+
+    /* A11y focus */
+    .btn:focus,.btn-primary:focus,.btn-light:focus,.c-ctrl:focus,.c-dot:focus{outline:none;box-shadow:var(--ring)}
+
+    /* Reveal on scroll */
+    [data-animate]{opacity:0;transform:translateY(16px);transition: all .6s ease}
+    [data-animate].in{opacity:1;transform:translateY(0)}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .wrap{grid-template-columns:1fr}
+      .grid-2,.services,.values,.contact{grid-template-columns:1fr}
+      .links{display:none}
+      .slide{height:320px}
+      .leaf{opacity:.22}
+    }
   </style>
 </head>
 <body>
-  <!-- ============================= HERO PRINCIPAL ============================= -->
-  <header>
-    <div class="hero-inner">
-      <div class="hero-eyebrow">AQUAPAISAJE</div>
-      <h1>Agua, vida y forma</h1>
-      <p class="hero-sub">Primera empresa <strong>netamente iglesiana</strong> en riego inteligente, paisajismo y limpieza profesional.</p>
-      <div class="cta">
-        <a class="btn" href="#contacto">Solicitar reunión</a>
-        <a class="btn" href="#servicios">Ver servicios</a>
+  <!-- NAV -->
+  <header class="nav" aria-label="Navegación principal">
+    <div class="wrap">
+      <div class="brand" aria-label="AquaPaisaje">
+        <img src="https://i.ibb.co/xK4wDWLk/c5ac876c0cd3.jpg"
+             alt="Logo AquaPaisaje" class="logo-img" width="160" height="48" loading="eager" decoding="async" />
+        <div class="name">AquaPaisaje</div>
+      </div>
+      <nav class="links" aria-label="Secciones">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#trabajos">Trabajos</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn" href="https://wa.me/542646207944?text=Hola%20AquaPaisaje%2C%20quiero%20un%20presupuesto" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap" style="max-width:1150px">
+      <div>
+        <div class="badge" data-animate>Primera empresa netamente iglesiana</div>
+        <h1 data-animate style="transition-delay:.06s">Riego inteligente y limpieza profesional</h1>
+        <p data-animate style="transition-delay:.12s">Diseñamos y mantenemos espacios verdes y ambientes limpios con <strong>eficiencia hídrica</strong>, estética y servicio confiable. Consultá tu presupuesto sin cargo.</p>
+        <div class="cta" data-animate style="transition-delay:.18s">
+          <a class="btn-primary" href="https://wa.me/542646207944?text=Hola%20AquaPaisaje%2C%20quiero%20un%20presupuesto" target="_blank" rel="noopener noreferrer">Pedir presupuesto</a>
+          <a class="btn-light" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+
+      <!-- (El bloque 'Confían en nosotros' fue eliminado) -->
+      <div class="card" data-animate>
+        <h3 style="margin-top:0">¿Por qué elegirnos?</h3>
+        <p><strong>Ahorro de agua</strong> con automatización por sectores y mantenimiento preventivo.</p>
+        <p><strong>Servicio confiable</strong> con planificación y control de calidad en cada visita.</p>
+        <p><strong>Gestión simple</strong>: presupuesto rápido por WhatsApp y seguimiento transparente.</p>
       </div>
     </div>
-  </header>  <!-- ============================ CUERPO PRINCIPAL ============================ -->  <main>
-    <!-- ======= Misión / Visión / Contacto ======= -->
-    <section aria-label="Misión y Visión">
-      <h2 class="section-title">Misión y Visión</h2>
-      <div class="grid grid-2">
-        <!-- Misión & Visión -->
-        <article class="card">
-          <h3 style="margin-top:0;color:var(--verde-osc)">Misión</h3>
-          <p>Diseñar y mantener <strong>espacios verdes regenerativos</strong> que armonicen tecnología de riego, estética y sustentabilidad.</p>
-          <h3 style="color:var(--verde-osc)">Visión</h3>
-          <p>Ser referentes en <strong>paisajismo sustentable</strong> e infraestructura verde, con enfoque local e innovación constante.</p>
-          <h4 style="margin:.8rem 0 .4rem">Valores</h4>
-          <ul class="checks">
-            <li>Sustentabilidad</li>
-            <li>Eficiencia hídrica</li>
-            <li>Innovación</li>
-          </ul>
-        </article>
-        <!-- Contacto breve -->
-        <aside class="card" aria-label="Datos de contacto">
-          <h3 style="margin-top:0;color:var(--verde-osc)">Datos de contacto</h3>
-          <p style="color:var(--txt-soft)">El Llano s/n, Las Flores, Dpto. Iglesia (San Juan)<br>Tel: 2646207944 · 2645643059<br>Email: marioquilpatay3@gmail.com / agrotud@gmail.com</p>
-        </aside>
+
+    <!-- HOJAS PARALLAX (decoración móvil con scroll) -->
+    <div class="parallax" aria-hidden="true">
+      <!-- Hoja 1 -->
+      <div class="leaf l1" data-speed="0.15">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <path d="M20,95 C10,70 25,35 60,20 C90,35 105,65 90,90 C75,112 40,110 20,95Z"
+                fill="#10b981"/>
+          <path d="M45,35 C60,60 60,85 55,105" stroke="#0a7e66" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+        </svg>
       </div>
-    </section><!-- ===================== SERVICIOS DESTACADOS (Limpieza + Riego) ===================== -->
-<section id="servicios" class="servicios" aria-label="Servicios">
-  <h2 class="section-title">Servicios destacados</h2>
-  <div class="grid grid-2">
-    <!-- RIEGO INTELIGENTE (DESTACADO) -->
-    <article class="card destacado">
-      <span class="badge">Destacado</span>
-      <h3 style="margin:.2rem 0;color:var(--verde-osc)">Riego inteligente</h3>
-      <!-- Ilustración riego (SVG inline) -->
-      <svg viewBox="0 0 360 140" role="img" aria-label="Ilustración riego" style="width:100%;border-radius:12px">
-        <defs>
-          <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e0f2fe"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
-        </defs>
-        <rect width="360" height="140" fill="url(#g1)"/>
-        <g fill="#38bdf8" opacity=".9">
-          <path d="M0 90c30 20 60-20 90 0s60 20 90 0 60-20 180 0v50H0Z"/>
-        </g>
-        <g stroke="#0ea5e9" stroke-width="3" fill="none" opacity=".7">
-          <path d="M40 40c20 10 40 10 60 0M100 35c20 10 40 10 60 0M160 30c20 10 40 10 60 0"/>
-        </g>
-      </svg>
-      <ul>
-        <li>Automatizado por sectores y goteo</li>
-        <li>Limpieza de filtros, cambio de grava</li>
-      </ul>
-    </article>
+      <!-- Hoja 2 -->
+      <div class="leaf l2" data-speed="0.25">
+        <svg width="100" height="100" viewBox="0 0 120 120" fill="none">
+          <path d="M25,100 C15,70 35,40 75,25 C100,45 105,75 85,95 C65,115 40,112 25,100Z"
+                fill="#0ea5e9"/>
+          <path d="M55,40 C70,60 70,85 65,102" stroke="#0b5c86" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+        </svg>
+      </div>
+      <!-- Hoja 3 -->
+      <div class="leaf l3" data-speed="0.18">
+        <svg width="140" height="140" viewBox="0 0 120 120" fill="none">
+          <path d="M18,88 C8,66 26,38 62,24 C90,40 101,68 86,88 C72,106 40,104 18,88Z"
+                fill="#0fb981"/>
+          <path d="M44,36 C58,58 60,82 56,104" stroke="#0a7e66" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+        </svg>
+      </div>
+      <!-- Hoja 4 -->
+      <div class="leaf l4" data-speed="0.22">
+        <svg width="110" height="110" viewBox="0 0 120 120" fill="none">
+          <path d="M20,92 C12,72 30,42 70,26 C96,44 100,74 82,92 C66,110 38,108 20,92Z"
+                fill="#14b8a6"/>
+          <path d="M50,38 C64,60 66,84 61,104" stroke="#0e7e73" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+        </svg>
+      </div>
+    </div>
+  </section>
 
-    <!-- LIMPIEZA PROFESIONAL (DESTACADO) -->
-    <article class="card destacado">
-      <span class="badge">Destacado</span>
-      <h3 style="margin:.2rem 0;color:var(--verde-osc)">Limpieza profesional</h3>
-      <!-- Ilustración limpieza (SVG inline) -->
-      <svg viewBox="0 0 360 140" role="img" aria-label="Ilustración limpieza" style="width:100%;border-radius:12px">
-        <defs><linearGradient id="g2" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ecfdf5"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
-        <rect width="360" height="140" fill="url(#g2)"/>
-        <g fill="#10b981" opacity=".85">
-          <rect x="70" y="40" width="26" height="60" rx="6"/>
-          <rect x="102" y="50" width="160" height="10" rx="5"/>
-          <rect x="102" y="66" width="130" height="10" rx="5"/>
-          <rect x="102" y="82" width="110" height="10" rx="5"/>
-        </g>
-      </svg>
-      <ul>
-        <li>Oficinas, domicilios y hotelería</li>
-        <li>Programas a medida con insumos incluidos</li>
-      </ul>
-    </article>
-  </div>
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="wrap grid-2">
+      <div class="card" data-animate>
+        <h2>Misión</h2>
+        <p>Diseñar y mantener espacios verdes y ambientes limpios, combinando <strong>eficiencia hídrica</strong>, estética y servicios de limpieza confiables para hogares, oficinas e instituciones.</p>
+        <h2 style="margin-top:1.4rem">Visión</h2>
+        <p>Ser líderes regionales en riego inteligente y limpieza profesional, ofreciendo soluciones sustentables y de alta calidad para cada cliente.</p>
+      </div>
+      <div class="card" data-animate>
+        <h2>Valores</h2>
+        <div class="values">
+          <div class="value">🌱 <div><strong>Sustentabilidad</strong><br><span class="muted">Respeto al medio ambiente.</span></div></div>
+          <div class="value">💧 <div><strong>Eficiencia hídrica</strong><br><span class="muted">Uso responsable del agua.</span></div></div>
+          <div class="value">🤝 <div><strong>Confianza</strong><br><span class="muted">Limpieza transparente y programada.</span></div></div>
+          <div class="value">⚡ <div><strong>Innovación</strong><br><span class="muted">Tecnología en riego y procesos de higiene.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ===================== OTROS SERVICIOS ===================== -->
-  <h2 class="section-title" style="margin-top:18px">Otros servicios</h2>
-  <div class="grid grid-3">
-    <!-- Jardines y paisajismo -->
-    <article class="card">
-      <h3 style="margin-top:0;color:var(--verde-osc)">Jardines y paisajismo</h3>
-      <svg viewBox="0 0 360 120" role="img" aria-label="Ilustración jardines" style="width:100%;border-radius:12px"><rect width="360" height="120" fill="#f0fdf4"/><g fill="#22c55e" opacity=".9"><ellipse cx="100" cy="70" rx="60" ry="22"/><ellipse cx="220" cy="60" rx="52" ry="20"/><ellipse cx="300" cy="80" rx="40" ry="16"/></g></svg>
-      <ul><li>Diseño y ejecución</li></ul>
-    </article>
-    <!-- Control de plagas -->
-    <article class="card">
-      <h3 style="margin-top:0;color:var(--verde-osc)">Control de plagas</h3>
-      <svg viewBox="0 0 360 120" role="img" aria-label="Ilustración plagas" style="width:100%;border-radius:12px"><rect width="360" height="120" fill="#fefce8"/><g fill="#a16207" opacity=".9"><path d="M90 40 70 80h40z"/><circle cx="180" cy="60" r="18"/><rect x="240" y="40" width="22" height="40"/></g></svg>
-      <ul><li>Hormigueros y monitoreo</li></ul>
-    </article>
-    <!-- Venta de plantas y abonos -->
-    <article class="card">
-      <h3 style="margin-top:0;color:var(--verde-osc)">Venta de plantas y abonos</h3>
-      <svg viewBox="0 0 360 120" role="img" aria-label="Ilustración plantas" style="width:100%;border-radius:12px"><rect width="360" height="120" fill="#e0f2fe"/><g fill="#0369a1" opacity=".9"><circle cx="120" cy="60" r="22"/><circle cx="170" cy="60" r="18"/><circle cx="220" cy="60" r="14"/></g></svg>
-      <ul><li>Asesoramiento botánico</li></ul>
-    </article>
-  </div>
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <h2 data-animate>Servicios</h2>
+      <p class="muted" data-animate>Soluciones para hogares, oficinas, hotelería e instituciones.</p>
+      <div class="services" data-animate>
+        <div class="service">
+          <h3>Riego inteligente</h3>
+          <ul>
+            <li>Automatización por sectores</li>
+            <li>Limpieza de filtros y cambio de grava</li>
+            <li>Ahorro de agua y mantenimiento preventivo</li>
+          </ul>
+        </div>
+        <div class="service">
+          <h3>Limpieza domiciliaria e institucional</h3>
+          <ul>
+            <li>Cocinas, baños, patios, retiro de residuos</li>
+            <li>Oficinas: vidrios, sanitarios, áreas comunes</li>
+            <li>Hotelería: habitaciones y desinfección programada</li>
+          </ul>
+        </div>
+        <div class="service">
+          <h3>Paisajismo y complementos</h3>
+          <ul>
+            <li>Control de plagas</li>
+            <li>Venta de abonos y plantas</li>
+            <li>Asesoramiento estético y funcional</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta" style="margin-top:1.2rem" data-animate>
+        <a class="btn-primary" href="https://wa.me/542646207944?text=Hola%20AquaPaisaje%2C%20quiero%20cotizar%20servicios" target="_blank" rel="noopener noreferrer">Quiero cotizar</a>
+        <a class="btn-light" href="#trabajos">Ver trabajos</a>
+      </div>
+    </div>
+  </section>
 
-  <!-- ============== LIMPIEZA (Tabs: Oficinas / Domicilios / Hotelería) ============== -->
-  <h3 style="color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35);margin:18px 0 8px">Detalle de limpieza</h3>
-  <div class="tabs" role="tablist">
-    <div class="tab active" data-tab="of" role="tab" aria-selected="true">Oficinas</div>
-    <div class="tab" data-tab="dom" role="tab" aria-selected="false">Domicilios</div>
-    <div class="tab" data-tab="hot" role="tab" aria-selected="false">Hotelería</div>
-  </div>
-  <div class="tab-content active" id="of"><div class="card"><ul><li>Rutinas diarias/semanales</li><li>Áreas comunes, vidrios, sanitarios</li></ul></div></div>
-  <div class="tab-content" id="dom"><div class="card"><ul><li>Cocinas y sanitarios</li><li>Patios y retiro de residuos verdes</li></ul></div></div>
-  <div class="tab-content" id="hot"><div class="card"><ul><li>Turnos por check‑in/check‑out</li><li>Blancos, amenities y presentación</li></ul></div></div>
-</section>
+  <!-- CARRUSEL DE TRABAJOS -->
+  <section id="trabajos">
+    <div class="wrap">
+      <h2 data-animate>Trabajos realizados</h2>
+      <p class="muted" data-animate>Galería de proyectos de riego, limpieza y paisajismo.</p>
 
-<!-- ===================== CTA / FORMULARIO DE PRESUPUESTO ===================== -->
-<section id="contacto" aria-label="Solicitud de presupuesto">
-  <h2 class="section-title">Solicite su presupuesto</h2>
-  <div class="card">
-    <form method="post" action="/enviar" autocomplete="on">
-      <!-- Honeypot anti‑spam: NO completar -->
-      <input type="text" name="empresa" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="carousel card" data-animate aria-roledescription="carrusel" aria-label="Galería de trabajos">
+        <div class="carousel-track" id="track" aria-live="polite">
+          <!-- Reemplazá por tus URLs reales -->
+          <div class="slide" role="group" aria-label="1 de 7">
+            <img src="https://i.ibb.co/vC4S2Bdy/4794bfb0e346.jpg" alt="Riego sectorizado en jardín" width="1080" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="slide" role="group" aria-label="2 de 7">
+            <img src="https://i.ibb.co/pjQfsf9f/4e92ca59cb72.jpg" alt="Limpieza institucional en oficinas" width="1080" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="slide" role="group" aria-label="3 de 7">
+            <img src="https://i.ibb.co/1YCKHNSf/325f887af24d.jpg" alt="Paisajismo y plantas nativas" width="1080" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="slide" role="group" aria-label="4 de 7">
+            <img src="https://i.ibb.co/V0fHb0J3/eb6731ccacac.jpg" alt="Desinfección programada" width="1080" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="slide" role="group" aria-label="5 de 7">
+            <img src="https://i.ibb.co/v4tW5Z9V/9dc50c2c23df.jpg" alt="Mantenimiento de filtros" width="1080" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="slide" role="group" aria-label="6 de 7">
+            <img src="https://i.ibb.co/9Mw0LZb/e1f047950177.jpg" alt="Riego automatizado" width="1080" height="720" loading="lazy" decoding="async">
+          </div>
+        </div>
 
-      <input type="text"  name="nombre"   inputmode="text"  autocomplete="name"  placeholder="Nombre" required>
-      <input type="email" name="email"    inputmode="email" autocomplete="email" placeholder="Email" required>
-      <input type="tel"   name="telefono" inputmode="tel"   autocomplete="tel"   placeholder="Teléfono" pattern="[+0-9 ()-]{7,}">
-      <textarea name="detalle" rows="4" placeholder="Detalle de su necesidad"></textarea>
+        <button class="c-ctrl c-prev" aria-label="Anterior" id="prev">‹</button>
+        <button class="c-ctrl c-next" aria-label="Siguiente" id="next">›</button>
+        <div class="c-dots" role="tablist" aria-label="Paginación">
+          <button class="c-dot active" aria-label="Ir a imagen 1" data-i="0"></button>
+          <button class="c-dot" aria-label="Ir a imagen 2" data-i="1"></button>
+          <button class="c-dot" aria-label="Ir a imagen 3" data-i="2"></button>
+          <button class="c-dot" aria-label="Ir a imagen 4" data-i="3"></button>
+          <button class="c-dot" aria-label="Ir a imagen 5" data-i="4"></button>
+          <button class="c-dot" aria-label="Ir a imagen 6" data-i="5"></button>
+          <button class="c-dot" aria-label="Ir a imagen 7" data-i="6"></button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <button type="submit" aria-label="Enviar solicitud de presupuesto">Enviar solicitud</button>
-    </form>
-  </div>
-</section>
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap contact">
+      <div class="card" data-animate>
+        <h2>Contacto</h2>
+        <ul class="info-list">
+          <li><strong>Dirección:</strong> El Llano s/n, Las Flores, Dpto. Iglesia (San Juan, Argentina)</li>
+          <!-- Teléfonos ofuscados para menos scraping -->
+          <li><strong>Teléfonos:</strong> <a id="t1" href="#" rel="nofollow">[mostrar]</a> · <a id="t2" href="#" rel="nofollow">[mostrar]</a></li>
+          <!-- Emails ofuscados -->
+          <li><strong>Emails:</strong> <a id="m1" href="#" rel="nofollow">[mostrar]</a> · <a id="m2" href="#" rel="nofollow">[mostrar]</a></li>
+        </ul>
+        <p class="muted">Consultá tu presupuesto sin cargo y descubrí cómo optimizar tu espacio.</p>
+        <div class="cta">
+          <a class="btn-primary" href="https://wa.me/542646207944?text=Hola%20AquaPaisaje%2C%20me%20gustar%C3%ADa%20un%20presupuesto" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          <a class="btn-light" href="#trabajos">Ver galería</a>
+        </div>
+      </div>
+      <div class="card" data-animate>
+        <h3 style="margin-top:0">Cobertura y calidad</h3>
+        <p>Atendemos en Iglesia y zonas cercanas. Todos los trabajos se realizan con protocolos de seguridad, planificación y control de calidad.</p>
+        <ul>
+          <li>Agenda coordinada y puntualidad</li>
+          <li>Productos y equipamiento adecuados</li>
+          <li>Garantía de satisfacción</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  </main>  <!-- ================================ FOOTER ================================ -->  <footer style="text-align:center;color:#e6f6ff;padding:24px">© <span id="y"></span> AquaPaisaje — "Agua, vida y forma"</footer>  <!-- ================================ SCRIPTS ================================ -->  <script nonce="aqua123">
-    // Año dinámico en footer
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot">
+      <div class="brand" aria-label="AquaPaisaje">
+        <img src="https://i.ibb.co/xK4wDWLk/c5ac876c0cd3.jpg"
+             alt="Logo AquaPaisaje" class="logo-img" width="160" height="48" loading="lazy" decoding="async" />
+        <div class="name">AquaPaisaje · Agua, vida y forma</div>
+      </div>
+      <div class="footnote">© <span id="y"></span> AquaPaisaje. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a aria-label="WhatsApp" title="Chatear por WhatsApp"
+     href="https://wa.me/542646207944?text=Hola%20AquaPaisaje%2C%20quiero%20un%20presupuesto"
+     target="_blank" rel="noopener noreferrer"
+     style="position:fixed; right:16px; bottom:16px; background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; padding:14px 16px; border-radius:999px; box-shadow:var(--shadow); font-weight:800; text-decoration:none">
+     WhatsApp
+  </a>
+
+  <script>
+    // Año dinámico + animaciones on-scroll (simple y sin libs)
     document.getElementById('y').textContent = new Date().getFullYear();
+    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);}
+    }),{threshold:.2});
+    document.querySelectorAll('[data-animate]').forEach(el=>io.observe(el));
 
-    // Tabs limpieza
-    document.querySelectorAll('.tab').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
+    // Carrusel
+    const track = document.getElementById('track');
+    const slides = Array.from(track.children);
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const dots = Array.from(document.querySelectorAll('.c-dot'));
+    let index = 0, auto;
 
-    // Anti-spam (honeypot): si el campo oculto tiene valor, no se envía
-    document.querySelectorAll('form').forEach(f=>{
-      f.addEventListener('submit',(e)=>{
-        const hp=f.querySelector('input[name="empresa"]');
-        if(hp && hp.value.trim()!==''){
-          e.preventDefault();
-          return false;
-        }
+    function go(i){
+      index = (i + slides.length) % slides.length;
+      track.scrollTo({left: track.clientWidth * index, behavior:'smooth'});
+      dots.forEach((d,k)=>d.classList.toggle('active', k===index));
+    }
+    prev.addEventListener('click', ()=>{go(index-1); resetAuto();});
+    next.addEventListener('click', ()=>{go(index+1); resetAuto();});
+    dots.forEach(d=>d.addEventListener('click', ()=>{go(+d.dataset.i); resetAuto();}));
+    function startAuto(){ auto = setInterval(()=>go(index+1), 5000); }
+    function resetAuto(){ clearInterval(auto); startAuto(); }
+    window.addEventListener('resize', ()=>go(index));
+    startAuto();
+
+    // Ofuscación simple de teléfonos/emails (menos scraping)
+    const t1 = document.getElementById('t1'), t2 = document.getElementById('t2');
+    const m1 = document.getElementById('m1'), m2 = document.getElementById('m2');
+    const telA = ['+54','264','620','7944']; const telB = ['+54','264','564','3059'];
+    const mailA = ['marioquilpatay3','@','gmail','.com'];
+    const mailB = ['agrotud','@','gmail','.com'];
+    function setTel(el, arr){ const n = arr.join(' '); el.textContent = n; el.href = 'https://wa.me/' + n.replace(/[^\d]/g,''); }
+    function setMail(el, parts){ const m = parts.join(''); el.textContent = m; el.href = 'mailto:'+m; }
+    setTel(t1, telA); setTel(t2, telB); setMail(m1, mailA); setMail(m2, mailB);
+    document.querySelectorAll('img').forEach(img=>{ img.setAttribute('draggable','false'); });
+
+    // PARALLAX hojas (respeta reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!prefersReduced){
+      const leaves = document.querySelectorAll('.leaf');
+      const baseY = Array.from(leaves).map(()=>0);
+      function onScroll(){
+        const y = window.scrollY || window.pageYOffset;
+        leaves.forEach((leaf, i)=>{
+          const speed = parseFloat(leaf.dataset.speed || '0.2');
+          const offset = (y * speed);
+          leaf.style.transform = `translateY(${offset}px) ${leaf.dataset.rot || ''}`;
+        });
+      }
+      // Mantener la rotación inicial
+      document.querySelectorAll('.leaf').forEach(l=>{
+        const r = window.getComputedStyle(l).transform;
+        l.dataset.rot = r && r !== 'none' ? ` ${r}` : '';
       });
-    });
-  </script></body>
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+    }
+  </script>
+</body>
 </html>
