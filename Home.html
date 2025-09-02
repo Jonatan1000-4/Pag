@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>iPAGE · Sitio One‑Page para Empresas</title>
+  <meta name="description" content="Plantilla premium de una sola página para negocios. Rápida, accesible, responsive y lista para vender por ~USD 400." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0ea5e9" />
+  
+  <!-- SEO básico -->
+  <meta property="og:title" content="iPAGE · Sitio One‑Page para Empresas" />
+  <meta property="og:description" content="Plantilla premium de una sola página para negocios. Rápida, accesible y lista para vender." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #0b1220; /* fondo base oscuro suave */
+      --surface: #0f172a; /* tarjetas/encabezado */
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --brand: #0ea5e9; /* azul */
+      --brand-2: #10b981; /* verde */
+      --accent: #a78bfa; /* violeta */
+      --ok: #22c55e; --warn: #f59e0b; --err:#ef4444;
+      --radius: 16px; --shadow: 0 10px 30px rgba(2,6,23,.35);
+      --maxw: 1150px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, #0b1220 0%, #111827 30%, #0b1220 100%);
+      color: var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .container{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline: clamp(16px, 3vw, 28px)}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; border:1px solid transparent; padding:.9rem 1.15rem; border-radius:999px; font-weight:600; text-decoration:none; box-shadow:var(--shadow); cursor:pointer}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#06121f}
+    .btn-ghost{background:transparent; border-color:#334155; color:var(--text)}
+    .btn:focus-visible{outline:3px solid #fff; outline-offset:2px}
+    header{position:sticky; top:0; z-index:50; background:rgba(15,23,42,.7); backdrop-filter: blur(10px); border-bottom:1px solid #1f2937}
+    nav{display:flex; align-items:center; justify-content:space-between; min-height:64px}
+    .brand{display:flex; align-items:center; gap:.7rem; font-weight:800}
+    .brand .logo{width:36px; height:36px; border-radius:10px; background: radial-gradient(circle at 30% 30%, var(--brand), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent), transparent 55%), #0b132b; box-shadow: 0 0 0 2px #0ea5e944, 0 8px 24px #0ea5e955}
+    .navlinks{display:flex; gap:1rem}
+    .navlinks a{opacity:.9; text-decoration:none; padding:.4rem .7rem; border-radius: 10px}
+    .navlinks a:hover, .navlinks a:focus-visible{background:#0b132b}
+    .menu-btn{display:none}
+
+    .hero{position:relative; overflow:clip}
+    .hero .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(20px, 3.5vw, 44px); align-items:center; padding-block: clamp(40px, 7vw, 110px)}
+    .kicker{color:var(--brand-2); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.82rem}
+    h1{font-size: clamp(1.9rem, 3.8vw + .5rem, 3.4rem); line-height:1.12; margin:.35rem 0 .7rem}
+    .lead{color:#cbd5e1; font-size: clamp(1rem, 1.1vw + .6rem, 1.25rem)}
+    .hero-visual{position:relative; aspect-ratio: 4/3; border-radius: var(--radius); background: radial-gradient(1200px 500px at 10% 10%, #0ea5e977, transparent), radial-gradient(1200px 500px at 90% 90%, #10b98177, transparent), #0b132b; box-shadow:var(--shadow); overflow:hidden}
+    .chip{position:absolute; inset:auto 12px 12px auto; background:#0b1220cc; border:1px solid #1f2937; padding:.6rem .8rem; border-radius:12px; display:flex; align-items:center; gap:.6rem}
+    .chip svg{width:18px; height:18px}
+    .hero-badges{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:1rem}
+    .hero-badges span{border:1px solid #1f2937; background:#0b1220cc; padding:.4rem .6rem; border-radius:999px; font-size:.85rem}
+
+    section{scroll-margin-top:80px; padding-block: clamp(36px, 7vw, 88px); border-top:1px solid #111827}
+    .sec-title{font-size: clamp(1.5rem, 2.4vw + .6rem, 2.2rem); margin-bottom: .8rem}
+    .muted{color:var(--muted)}
+
+    .cards{display:grid; grid-template-columns: repeat(12, 1fr); gap: clamp(14px, 1.6vw, 18px)}
+    .card{grid-column: span 4; background: linear-gradient(180deg, #111827, #0b132b); border:1px solid #1f2937; border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow)}
+    .card h3{margin:.2rem 0 .2rem; font-size:1.12rem}
+    .card p{color:#cbd5e1; font-size:.98rem}
+
+    .pricing{display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 1.6vw, 18px)}
+    .price{background:#0b132b; border:1px solid #1f2937; border-radius: var(--radius); padding:20px; position:relative; box-shadow:var(--shadow)}
+    .price .badge{position:absolute; top:14px; right:14px; background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#06121f; padding:.3rem .55rem; font-weight:700; font-size:.75rem; border-radius:8px}
+    .price h3{margin:.3rem 0}
+    .price ul{margin:0; padding-left:1.1rem}
+
+    .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.6vw, 18px)}
+
+    .gallery{display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.3vw, 14px)}
+    .gallery img{width:100%; height:220px; object-fit:cover; border-radius:12px; filter:saturate(1.05)}
+
+    .faq details{background:#0b132b; border:1px solid #1f2937; border-radius:12px; padding: 14px 16px}
+    .faq summary{cursor:pointer; font-weight:600}
+
+    form {display:grid; gap:12px}
+    input, textarea, select{width:100%; padding:12px 14px; border-radius:12px; border:1px solid #263042; background:#0b1220; color:var(--text)}
+    input:focus, textarea:focus{outline:2px solid var(--brand)}
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+
+    footer{border-top:1px solid #111827; padding-block: 32px; color:#9aa4b2}
+
+    /* Utilidades */
+    .center{display:flex; align-items:center; justify-content:center}
+    .tag{display:inline-flex; align-items:center; gap:.4rem; padding:.25rem .5rem; border:1px solid #334155; border-radius:999px; font-size:.75rem; color:#cbd5e1}
+    .op6{opacity:.6}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero .grid{grid-template-columns: 1fr}
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex}
+      .cards .card{grid-column: span 12}
+      .pricing{grid-template-columns: 1fr}
+      .grid-2{grid-template-columns:1fr}
+      .gallery{grid-template-columns: repeat(2, 1fr)}
+      .two{grid-template-columns:1fr}
+    }
+
+    /* Animaciones respetuosas */
+    @media (prefers-reduced-motion: no-preference){
+      .reveal{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
+      .reveal.in{opacity:1; transform: translateY(0)}
+      .btn-primary{transition: transform .18s ease}
+      .btn-primary:hover{transform: translateY(-1px)}
+    }
+
+    /* Botón flotante WhatsApp */
+    .wafloat{position:fixed; bottom:18px; right:18px; z-index:60}
+    .wafloat a{display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1rem; background:#22c55e; color:#04130a; border-radius:999px; font-weight:700; box-shadow:var(--shadow); text-decoration:none}
+    .wafloat svg{width:18px; height:18px}
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"iPAGE",
+    "url":"jquilpatay14@gmail.com",
+    "image":"https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+    "description":"Sitios web rápidos, accesibles y rentables para PYMEs.",
+    "address": {"@type":"PostalAddress","addressLocality":"Iglesia","addressRegion":"San Juan","addressCountry":"AR"},
+    "telephone":"+54-9-264-670-6973",
+    "priceRange":"$$"
+  }
+  </script>
+</head>
+<body>
+  <a href="#contenido" class="tag" style="position:absolute; left:-999px; top:auto" onfocus="this.style.left='12px'">Saltar al contenido</a>
+
+  <header>
+    <div class="container">
+      <nav aria-label="Principal">
+        <div class="brand" aria-label="Marca">
+          <span class="logo" aria-hidden="true"></span>
+          <span>iPAGE</span>
+        </div>
+        <button class="menu-btn btn btn-ghost" aria-expanded="false" aria-controls="menu">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          Menú
+        </button>
+        <div id="menu" class="navlinks" role="navigation">
+          <a href="#servicios">Servicios</a>
+          <a href="#portafolio">Trabajos</a>
+          <a href="#precios">Precios</a>
+          <a href="#faq">FAQs</a>
+          <a class="btn btn-primary" href="#contacto">Pedir presupuesto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container grid">
+        <div>
+          <p class="kicker reveal">Sitio premium por ~USD 400</p>
+          <h1 class="reveal" style="transition-delay:.05s">Convierte visitas en ventas con una landing enfocada en negocio</h1>
+          <p class="lead reveal" style="transition-delay:.1s">Diseñada para PYMEs y profesionales: rápida, accesible, responsive y lista para campañas. Incluye SEO inicial, WhatsApp, analítica y formulario.</p>
+          <div style="margin-top:16px; display:flex; gap:.6rem" class="reveal" style="transition-delay:.15s">
+            <a href="#contacto" class="btn btn-primary" aria-label="Ir a contacto y pedir presupuesto">Solicitar presupuesto</a>
+            <a href="https://wa.me/5492646207944?text=Hola%20quiero%20mi%20sitio%20NegocioPro" class="btn btn-ghost" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+          </div>
+          <div class="hero-badges reveal" style="transition-delay:.2s">
+            <span>Performance 90+ Lighthouse</span>
+            <span>Accesible (WCAG AA)</span>
+            <span>Optimizada SEO</span>
+            <span>Dominio + Hosting listos</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal" aria-hidden="true" style="transition-delay:.1s">
+          <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=1200&auto=format&fit=crop" alt="Equipo trabajando en estrategia digital" loading="lazy" style="width:100%; height:100%; object-fit:cover; opacity:.9" />
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20l9-5-9-5-9 5 9 5z"/><path d="M12 12l9-5-9-5-9 5 9 5z"/></svg>
+            <span>Listo en 7‑10 días</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="container">
+        <h2 class="sec-title reveal">Servicios clave para despegar</h2>
+        <p class="muted reveal">Todo lo que necesitas para lanzar o renovar tu presencia digital con foco en ventas.</p>
+        <div class="cards" role="list">
+          <article class="card reveal" role="listitem">
+            <div class="tag">UX/UI</div>
+            <h3>Diseño estratégico</h3>
+            <p>Arquitectura de información, copy persuasivo, embudos y CTAs claros. Diseño mobile‑first y accesible.</p>
+          </article>
+          <article class="card reveal" role="listitem">
+            <div class="tag">SEO</div>
+            <h3>SEO inicial + Analítica</h3>
+            <p>Metadatos, OG/Twitter, Schema.org, mapa del sitio y analítica (Plausible/GA4) para medir tus objetivos.</p>
+          </article>
+          <article class="card reveal" role="listitem">
+            <div class="tag">Growth</div>
+            <h3>Integraciones comerciales</h3>
+            <p>WhatsApp Click‑to‑Chat, email, calendly, formularios con antispam y automatizaciones simples.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIALES -->
+    <section>
+      <div class="container grid-2">
+        <div class="reveal">
+          <h2 class="sec-title">¿Qué te hace diferente?</h2>
+          <ul class="muted" style="margin:0; padding-left:1.1rem">
+            <li>Velocidad real: sin frameworks pesados, optimizado en CSS/JS nativo.</li>
+            <li>Accesibilidad AA: navegación por teclado, contraste y ARIA listos.</li>
+            <li>Listo para campañas: páginas de destino, UTM y objetivos medibles.</li>
+            <li>Estructura escalable: se convierte en sitio multi‑página sin rehacer.</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="gallery" aria-label="Galería de ejemplos">
+            <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1200&auto=format&fit=crop" alt="Mockup de sitio en laptop" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Código limpio en pantalla" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1200&auto=format&fit=crop" alt="Equipos trabajando en branding" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section id="precios">
+      <div class="container">
+        <h2 class="sec-title reveal">Planes transparentes</h2>
+        <p class="muted reveal">Empieza con One‑Page (~USD 400) y escala cuando lo necesites.</p>
+        <div class="pricing">
+          <div class="price reveal">
+            <div class="badge" aria-label="Recomendado">Popular</div>
+            <h3>One‑Page Pro</h3>
+            <p class="muted">Landing enfocada en ventas, ideal para campañas y validación.</p>
+            <p style="font-size:2rem; font-weight:800">USD 400</p>
+            <ul>
+              <li>Secciones: Hero, Servicios, Diferenciales, Precios, FAQs, Contacto</li>
+              <li>Integración WhatsApp + Email</li>
+              <li>SEO/OG + Schema.org + Analítica</li>
+              <li>Entrega en 7‑10 días</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn btn-primary" href="#contacto">Lo quiero</a></div>
+          </div>
+          <div class="price reveal">
+            <h3>Business Plus</h3>
+            <p class="muted">Multipágina (Hasta 5). Blog básico y casos de éxito.</p>
+            <p style="font-size:2rem; font-weight:800">USD 750</p>
+            <ul>
+              <li>Hasta 5 páginas y blog mínimo</li>
+              <li>Formularios avanzados (antispam)</li>
+              <li>Soporte 30 días</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#contacto">Consultar</a></div>
+          </div>
+          <div class="price reveal">
+            <h3>Growth Suite</h3>
+            <p class="muted">Para escalar: páginas de campaña, A/B testing y CRM ligero.</p>
+            <p style="font-size:2rem; font-weight:800">USD 1200</p>
+            <ul>
+              <li>10+ páginas + landings</li>
+              <li>Integración CRM (Airtable/Sheets)</li>
+              <li>Tests A/B y dashboards</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#contacto">Agendar llamada</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALCULADORA SIMPLE -->
+    <section>
+      <div class="container grid-2">
+        <div class="reveal">
+          <h2 class="sec-title">Calcula tu inversión</h2>
+          <p class="muted">Ajusta opciones y obtén un estimado inmediato (no vinculante).</p>
+          <form id="calc" aria-describedby="calcHelp">
+            <div class="two">
+              <label>Branding básico
+                <select name="branding">
+                  <option value="0">Ya tengo logo</option>
+                  <option value="80">Necesito isologo (USD 80)</option>
+                </select>
+              </label>
+              <label>Copywriting
+                <select name="copy">
+                  <option value="0">Yo aporto textos</option>
+                  <option value="90">Quiero textos persuasivos (USD 90)</option>
+                </select>
+              </label>
+            </div>
+            <div class="two">
+              <label>Integraciones
+                <select name="integr">
+                  <option value="0">WhatsApp + Email</option>
+                  <option value="60">+ Calendly / Chat (USD 60)</option>
+                </select>
+              </label>
+              <label>Hosting/Setup
+                <select name="host">
+                  <option value="0">Yo lo gestiono</option>
+                  <option value="50">Quiero que lo configuren (USD 50)</option>
+                </select>
+              </label>
+            </div>
+            <output id="calcTotal" aria-live="polite" style="font-size:1.5rem; font-weight:800">Total estimado: USD 400</output>
+          </form>
+          <p id="calcHelp" class="muted">Base One‑Page: USD 400. Impuestos y plataformas no incluidos.</p>
+        </div>
+        <div class="reveal">
+          <h3>Incluye checklist de calidad</h3>
+          <ul class="muted" style="margin:0; padding-left:1.1rem">
+            <li>Lighthouse 90+ (Performance/SEO/Best Practices)</li>
+            <li>Accesibilidad WCAG AA (teclado/contraste/ARIA)</li>
+            <li>Optimización de imágenes y metadata completa</li>
+            <li>Guía de edición para el cliente</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="sec-title reveal">Preguntas frecuentes</h2>
+        <div class="faq grid-2">
+          <details class="reveal">
+            <summary>¿Cuánto tarda?</summary>
+            <div class="muted">Entre 7 y 10 días hábiles desde la aprobación del contenido.</div>
+          </details>
+          <details class="reveal">
+            <summary>¿Qué necesito para comenzar?</summary>
+            <div class="muted">Logo (si tenés), textos o ideas, fotos y datos de contacto. Si no, los creamos juntos.</div>
+          </details>
+          <details class="reveal">
+            <summary>¿Puedo escalar a multipágina?</summary>
+            <div class="muted">Sí. Esta base está pensada para crecer sin rehacer todo.</div>
+          </details>
+          <details class="reveal">
+            <summary>¿Incluye dominio y hosting?</summary>
+            <div class="muted">Podés usar tu hosting o lo configuramos (coste aparte). Recomendamos Netlify/Vercel.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="container grid-2">
+        <div class="reveal">
+          <h2 class="sec-title">Hablemos de tu proyecto</h2>
+          <p class="muted">Contame objetivos, plazos y referencias. Respondemos dentro de 24h hábiles.</p>
+          <form id="contactForm" action="https://formspree.io/f/xyyylol" method="POST">
+            <label>Nombre<input name="nombre" autocomplete="name" required /></label>
+            <div class="two">
+              <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+              <label>WhatsApp<input name="whatsapp" placeholder="+54 9 ..." /></label>
+            </div>
+            <label>Mensaje<textarea name="mensaje" rows="5" placeholder="Contame sobre tu negocio..." required></textarea></label>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <p id="formMsg" class="muted" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="reveal">
+          <div class="card" role="note">
+            <h3>Datos de contacto</h3>
+            <p class="muted">Iglesia, San Juan (AR) · Atención remota para todo el país.</p>
+            <p>📧 <a href="mailto:jquilpatay14@gmail.com">jquilpatay14@gmail.com</a></p>
+            <p>💬 <a href="https://wa.me/5492646706973" target="_blank" rel="noopener">+54 9 264 679 6973</a></p>
+            <p class="op6">Horario: Lun a Vie 9–18 h</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="y"></span> Ipage · Hecho por Jonatan en Argentina</div>
+      <div class="op6">Privacidad · Términos · <a href="#">Accesibilidad</a></div>
+    </div>
+  </footer>
+
+  <div class="wafloat"><a href="https://wa.me/5492646706973?text=Hola%20quiero%20mi%20sitio%20NegocioPro" target="_blank" rel="noopener" aria-label="Abrir WhatsApp"> 
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.52 3.48A11.77 11.77 0 0012 0 11.77 11.77 0 00.48 12 11.53 11.53 0 002 18.27L0 24l5.91-1.94A11.77 11.77 0 0012 23.77 11.77 11.77 0 0023.52 12a11.53 11.53 0 00-3-7.77z"/><path d="M17 14.5c-.27.77-1.61 1.46-2.24 1.52s-1.18.24-4-1.28-3.53-3.55-3.77-3.9-.9-1.33-.86-2 .6-1.17.82-1.33.46-.3.69-.25.54.02.83.64.92 1.51 1 1.63.15.38 0 .61-.45.67-.62.9-.32.34-.14.66 1.07 1.77 2.3 2.46 1.97.82 2.29.96.5.08.69-.12.79-.9 1-1.22.46-.26.76-.16 2.01.95 2.36 1.13.58.26.66.4.08 1.02-.19 1.79z"/></svg>
+    WhatsApp</a></div>
+
+  <script>
+    // Año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Menú móvil
+    const btn = document.querySelector('.menu-btn');
+    const menu = document.getElementById('menu');
+    if(btn){
+      btn.addEventListener('click', ()=>{
+        const open = menu.style.display === 'flex';
+        menu.style.display = open ? 'none' : 'flex';
+        menu.style.flexDirection = 'column';
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    }
+
+    // Revelado en scroll
+    const onIntersect = (entries, obs)=>{
+      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } }
+    };
+    const io = ('IntersectionObserver' in window) ? new IntersectionObserver(onIntersect, {threshold: .08}) : null;
+    if(io){ document.querySelectorAll('.reveal').forEach(el=> io.observe(el)); } else { document.querySelectorAll('.reveal').forEach(el=> el.classList.add('in')); }
+
+    // Calculadora
+    const base = 400;
+    const form = document.getElementById('calc');
+    const out = document.getElementById('calcTotal');
+    function calc(){
+      const data = new FormData(form);
+      let total = base + Number(data.get('branding')) + Number(data.get('copy')) + Number(data.get('integr')) + Number(data.get('host'));
+      out.textContent = `Total estimado: USD ${total}`;
+    }
+    form?.addEventListener('change', calc);
+    calc();
+
+    // Formulario (simples mensajes)
+    const f = document.getElementById('contactForm');
+    const msg = document.getElementById('formMsg');
+    f?.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      msg.textContent = 'Enviando…';
+      try{
+        const res = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } });
+        if(res.ok){ f.reset(); msg.textContent = '¡Gracias! Te contactaremos pronto.'; }
+        else msg.textContent = 'No se pudo enviar. Probá por WhatsApp.';
+      }catch(err){ msg.textContent = 'Error de red. Escribinos por WhatsApp.'; }
+    });
+  </script>
+</body>
+</html>
